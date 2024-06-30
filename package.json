@@ -1,0 +1,23 @@
+{
+  "name": "orbitus",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/underlions/orbitus.git"
+  },
+  "author": "0x1F8F",
+  "license": "GPL-3.0",
+  "description": "",
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.11.3"
+  }
+}
