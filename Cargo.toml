@@ -1,0 +1,12 @@
+[workspace]
+members = ["orbitus"]
+resolver = "2"
+default-members = ["orbitus"]
+
+[workspace.dependencies]
+tokio = { version = "1.38.0", features = ["full"] }
+axum = { version = "0.7.5" }
+
+
+[workspace.lints.rust]
+unsafe_code = 'forbid'
