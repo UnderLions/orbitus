@@ -21,6 +21,5 @@ export default defineConfig({
     assets : "__assets",
     redirects : true,
     inlineStylesheets : 'auto',
-
   },
 })
