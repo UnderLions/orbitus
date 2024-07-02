@@ -1,3 +1,9 @@
+// #![allow(unused)]
+
+mod cli;
+mod srv;
+
+
 fn main() {
-    println!("Hello, world!");
+    cli::init();
 }
