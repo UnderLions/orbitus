@@ -1,5 +1,5 @@
 // #![allow(unused)]
-
+#![forbid(unsafe_code)]
 mod cli;
 mod srv;
 

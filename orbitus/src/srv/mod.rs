@@ -7,6 +7,9 @@ use axum::Router;
 use axum::response::IntoResponse;
 use axum::routing::get;
 
+
+mod routs;
+
 fn router() -> Router<> {
     Router::new()
         .route("/", get(|| async { "<p>404</p>".into_response() }))
