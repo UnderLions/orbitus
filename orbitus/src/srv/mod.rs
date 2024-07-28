@@ -7,15 +7,21 @@ use axum::Router;
 use axum::response::IntoResponse;
 use axum::routing::get;
 
-
+// include all submodules under src::xxxx;
 mod routs;
 
+
+// TODO : remove this sh*t
 fn router() -> Router<> {
     Router::new()
         .route("/", get(|| async { "<p>404</p>".into_response() }))
 }
 
+
 fn multi_thread_runtime(n_threads: usize) -> Result<Runtime, std::io::Error> {
+    // it simply returns runtime builder object
+    //
+    // TODO : replace print with tracing [low priority]
     Builder::new_multi_thread()
         .worker_threads(n_threads)
         .enable_all()
@@ -29,6 +35,7 @@ fn multi_thread_runtime(n_threads: usize) -> Result<Runtime, std::io::Error> {
         .build()
 }
 
+// TODO : remove unwrap and write actual safe rust
 pub fn start_serv(StartCommandOptions { host, .. }: StartCommandOptions) {
     println!("host at {:?}", host);
     let runnerer = multi_thread_runtime(2).unwrap();
