@@ -1,7 +1,6 @@
 use std::usize;
 
 use crate::cli::StartCommandOptions;
-use axum::{self, routing::future::RouteFuture};
 use tokio::runtime::{Builder, Runtime};
 use axum::Router;
 use axum::response::IntoResponse;
@@ -9,12 +8,13 @@ use axum::routing::get;
 
 // include all submodules under src::xxxx;
 mod routs;
-
+mod pages;
 
 // TODO : remove this sh*t
 fn router() -> Router<> {
     Router::new()
         .route("/", get(|| async { "<p>404</p>".into_response() }))
+        .merge(routs::fallback_route())
 }
 
 

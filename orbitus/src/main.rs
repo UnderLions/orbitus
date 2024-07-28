@@ -20,7 +20,7 @@
 // include all modules in this crate
 mod cli;
 mod srv;
-
+mod err;
 
 fn main() {
     // call cli initializer
