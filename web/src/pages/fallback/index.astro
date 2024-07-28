@@ -1,0 +1,17 @@
+---
+import Fallback from "../../layouts/fallback.astro";
+
+const title = "Not Found";
+const code = "404 ";
+const name = "client side error - "
+const msg = "requested page not found"
+---
+
+<Fallback title={title}>
+	<div class="w-screen h-screen flex justify-center items-center">
+	<div class="flex flex-col p-4 rounded-lg bg-[#f1f1f1] flex-shrink">
+		<h1 class="mx-0.5 text-lg"><span class="text-red-600">{code}</span>{title}</h1>
+		<p class="m-0.5 text-gray-500"><span class="text-gray-900">{name}</span>{msg}</p>
+	</div>
+	</div>
+</Fallback>
