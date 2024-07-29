@@ -9,6 +9,9 @@ tokio = { workspace = true }
 clap = { version = "4.5.8", features = ["derive"] }
 tracing = "0.1.40"
 tracing-subscriber = "0.3.18"
+rust-embed = { version = "8.5.0", features = ["tokio", "axum", "include-exclude", "mime-guess"] }
+sha2 = "0.10.8"
+mime_guess = "2.0.5"
 
 [lints]
 workspace = true
