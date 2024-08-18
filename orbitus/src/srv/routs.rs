@@ -1,10 +1,13 @@
-use axum::Router;
+use std::borrow::BorrowMut;
+
+use axum::{routing::post, Router};
 use axum::response::IntoResponse;
 use axum::extract::Path;
 use axum::routing::get;
 use axum::http::header;
 use tracing::{info, warn};
-use crate::err::Exception;
+use crate::api::LoginStateModel;
+use crate::{api::get_new_model, err::Exception};
 use rust_embed::Embed;
 
 use super::pages::main_page_handeler_get;
@@ -40,6 +43,16 @@ pub fn spa_router() -> Router {
 pub fn asset_router() -> Router {
     Router::new()
         .route_service("/__assets/*path", get(asset_loader))
+}
+
+pub fn login_api_router() -> Router {
+    Router::new()
+        .with_state(get_new_model())
+        .route("create", get(login_api_create_user_handeler))
+}
+
+pub async fn login_api_create_user_handeler(state: LoginStateModel) {
+    let db = state
 }
 
 #[derive(Embed)]

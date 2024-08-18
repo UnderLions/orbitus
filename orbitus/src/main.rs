@@ -21,6 +21,7 @@
 mod cli;
 mod srv;
 mod err;
+mod api;
 
 fn main() {
     // call cli initializer

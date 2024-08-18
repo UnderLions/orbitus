@@ -1,7 +1,7 @@
 use std::usize;
 
 use crate::cli::StartCommandOptions;
-use routs::asset_router;
+use routs::{asset_router, login_api_router};
 use tokio::runtime::{Builder, Runtime};
 use axum::Router;
 
@@ -14,6 +14,7 @@ fn router() -> Router<> {
     Router::new()
         .merge(routs::spa_router())
         .merge(asset_router())
+        .nest("/api", login_api_router())
 }
 
 
