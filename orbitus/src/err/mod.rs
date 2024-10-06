@@ -12,8 +12,6 @@ pub(crate) type Results<T> = Result<T,Exception>;
 pub enum Exception {
     // TODO : implement for tracing
     ClientSideError404,
-    ApiMissMatch,
-    ClientError { code: u16 , msg: String }
 }
 
 
@@ -28,17 +26,6 @@ impl IntoResponse for Exception {
                         404, "requested page not found".to_owned()
                 )).into_response()
             },
-            Self::ApiMissMatch => {
-                "bad api".into_response()
-            },
-            Self::ClientError { code, msg } => {
-                Body::from(fallback_response_message(
-                        "error".to_owned(),
-                        "client error".to_owned(),
-                        code, msg
-                )).into_response()
-
-            }
         }
     }
 }

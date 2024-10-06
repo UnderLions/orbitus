@@ -9,4 +9,4 @@ axum = { version = "0.7.5" }
 
 
 [workspace.lints.rust]
-unsafe_code = 'forbid'
+# unsafe_code = 'forbid'
