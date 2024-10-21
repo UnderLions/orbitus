@@ -9,8 +9,6 @@
 // LINTS
 //
 // #![forbid(unsafe_code)]
-// it is not necessary ,because already done in Cargo.toml
-// so no unsafe_code here!
 // 
 // TODO: Doc it
 // #![warn(missing_docs)]

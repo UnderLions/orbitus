@@ -1,4 +1,4 @@
-use axum::Router;
+use axum::{routing::post, Router};
 use axum::response::IntoResponse;
 use axum::extract::Path;
 use axum::routing::get;
@@ -6,13 +6,15 @@ use axum::http::header;
 use tracing::{info, warn};
 use crate::err::Exception;
 use rust_embed::Embed;
+use std::sync::Arc;
 
-use super::pages::main_page_handeler_get;
+use super::pages::{self, main_page_handler_get};
+use crate::api:: { AtomicDB, CRUD };
 
 pub fn fallback_route() -> Router {
     Router::new()
         .fallback( || async {
-            Exception::ClientSideError404
+            Exception::NotFoundError
         })
 }
 
@@ -31,13 +33,13 @@ pub async fn asset_loader(Path(path) : Path<String>) -> impl IntoResponse {
     }
 }
 
-pub fn spa_router() -> Router {
+pub fn spa_router() -> Router<()> {
     Router::new()
-        .route("/", get(main_page_handeler_get))
+        .route("/", get(main_page_handler_get))
         .merge(fallback_route())
 }
 
-pub fn asset_router() -> Router {
+pub fn asset_router() -> Router<()> {
     Router::new()
         .route_service("/__assets/*path", get(asset_loader))
 }
@@ -46,4 +48,6 @@ pub fn asset_router() -> Router {
 #[folder = "src/build/__assets/"]
 struct Asset;
 
-
+pub fn model() -> Arc<AtomicDB> {
+    Arc::new(AtomicDB::new())
+}

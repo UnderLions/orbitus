@@ -11,7 +11,7 @@ pub(crate) type Results<T> = Result<T,Exception>;
 
 pub enum Exception {
     // TODO : implement for tracing
-    ClientSideError404,
+    NotFoundError,
 }
 
 
@@ -19,7 +19,7 @@ impl IntoResponse for Exception {
     // asusual implemantaion
     fn into_response(self) -> Response<Body> {
         match self {
-            Self::ClientSideError404 => {
+            Self::NotFoundError => {
                 Body::from(fallback_response_message(
                         "not found".to_owned(),
                         "client error".to_owned(),

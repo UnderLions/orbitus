@@ -1,18 +1,21 @@
-use std::usize;
+use std::sync::Arc;
 
-use crate::cli::StartCommandOptions;
-use routs::{asset_router};
+use crate::{api::AtomicDB, cli::StartCommandOptions};
+use routs::asset_router;
 use tokio::runtime::{Builder, Runtime};
-use axum::Router;
+use axum::{routing::{get, post}, Router};
 
 // include all submodules under src::xxxx;
 mod routs;
 mod pages;
 
 // TODO : remove this sh*t
-fn router() -> Router<> {
+fn router() -> Router<()> { 
     Router::new()
-        .merge(routs::spa_router())
+        .route("/", get(pages::main_page_handler_get))
+        .route("/auth/creat", post(pages::root_auth_create_post))
+        .route("/auth/login", post(pages::root_auth_login_post))
+        .with_state(routs::model())
         .merge(asset_router())
 }
 
